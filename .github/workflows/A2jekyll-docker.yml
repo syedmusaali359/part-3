@@ -21,7 +21,4 @@ jobs:
   
     runs-on: ubunut-latest
     needs: Build
-    
-    steps:
-    - uses: actions/checkout@v3
-    - name: Test the site in the jekyll/builder container
+
