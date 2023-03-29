@@ -20,8 +20,8 @@ jobs:
   Run:
   
     runs-on: ubunut-latest
-    needs: jobs
+    needs: Build
     
-     steps:
+    steps:
     - uses: actions/checkout@v3
 
