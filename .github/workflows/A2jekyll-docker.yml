@@ -1,18 +1,26 @@
-name: Jekyll site CI
+name: Python application CI/CD
 
 on:
   push:
     branches: [ "master" ]
 
 jobs:
-  Build:
-
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the site in the jekyll/builder container
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
       run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+        python -m pip install --upgrade pip
+        pip install -r req.txt
+
+    - name: Build
+      run: |
+        python setup.py sdist bdist_wheel
