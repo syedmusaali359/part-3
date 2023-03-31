@@ -22,4 +22,4 @@ jobs:
      
     - name: Build
       run: |
-        python setup.py sdist bdist_wheel
+        python app.py sdist bdist_wheel
